@@ -1,46 +1,48 @@
 package trutsin.dev;
 
+import java.util.ArrayList;
+
 public class Element {
 
-    private int[][] coefficientFirst;
-    private int[][] coefficientSecond;
-    private int[][] coefficientThird;
-    private int[][] coefficientFourth;
+    private ArrayList<Integer> coefficientFirst;
+    private ArrayList<Integer> coefficientSecond;
+    private ArrayList<Integer> coefficientThird;
+    private ArrayList<Integer> coefficientFourth;
     private int countOfMultiplier;
     private int largeMultiplier;
 
     public Element() {
     }
 
-    public int[][] getCoefficientFirst() {
+    public ArrayList<Integer> getCoefficientFirst() {
         return coefficientFirst;
     }
 
-    public void setCoefficientFirst(int[][] coefficientFirst) {
+    public void setCoefficientFirst(ArrayList<Integer> coefficientFirst) {
         this.coefficientFirst = coefficientFirst;
     }
 
-    public int[][] getCoefficientSecond() {
+    public ArrayList<Integer> getCoefficientSecond() {
         return coefficientSecond;
     }
 
-    public void setCoefficientSecond(int[][] coefficientSecond) {
+    public void setCoefficientSecond(ArrayList<Integer> coefficientSecond) {
         this.coefficientSecond = coefficientSecond;
     }
 
-    public int[][] getCoefficientThird() {
+    public ArrayList<Integer> getCoefficientThird() {
         return coefficientThird;
     }
 
-    public void setCoefficientThird(int[][] coefficientThird) {
+    public void setCoefficientThird(ArrayList<Integer> coefficientThird) {
         this.coefficientThird = coefficientThird;
     }
 
-    public int[][] getCoefficientFourth() {
+    public ArrayList<Integer> getCoefficientFourth() {
         return coefficientFourth;
     }
 
-    public void setCoefficientFourth(int[][] coefficientFourth) {
+    public void setCoefficientFourth(ArrayList<Integer> coefficientFourth) {
         this.coefficientFourth = coefficientFourth;
     }
 
@@ -58,5 +60,17 @@ public class Element {
 
     public void setLargeMultiplier(int largeMultiplier) {
         this.largeMultiplier = largeMultiplier;
+    }
+
+    @Override
+    public String toString() {
+        return "Element{" +
+                "coefficientFirst=" + coefficientFirst +
+                ", coefficientSecond=" + coefficientSecond +
+                ", coefficientThird=" + coefficientThird +
+                ", coefficientFourth=" + coefficientFourth +
+                ", countOfMultiplier=" + countOfMultiplier +
+                ", largeMultiplier=" + largeMultiplier +
+                '}';
     }
 }
