@@ -4,61 +4,61 @@ import java.util.ArrayList;
 
 public class Element {
 
-    private ArrayList<Integer> coefficientFirst;
-    private ArrayList<Integer> coefficientSecond;
-    private ArrayList<Integer> coefficientThird;
-    private ArrayList<Integer> coefficientFourth;
-    private int countOfMultiplier;
-    private int largeMultiplier;
+    private ArrayList<Double> coefficientFirst;
+    private ArrayList<Double> coefficientSecond;
+    private ArrayList<Double> coefficientThird;
+    private ArrayList<Double> coefficientFourth;
+    private double countOfMultiplier;
+    private double largeMultiplier;
 
     public Element() {
     }
 
-    public ArrayList<Integer> getCoefficientFirst() {
+    public ArrayList<Double> getCoefficientFirst() {
         return coefficientFirst;
     }
 
-    public void setCoefficientFirst(ArrayList<Integer> coefficientFirst) {
+    public void setCoefficientFirst(ArrayList<Double> coefficientFirst) {
         this.coefficientFirst = coefficientFirst;
     }
 
-    public ArrayList<Integer> getCoefficientSecond() {
+    public ArrayList<Double> getCoefficientSecond() {
         return coefficientSecond;
     }
 
-    public void setCoefficientSecond(ArrayList<Integer> coefficientSecond) {
+    public void setCoefficientSecond(ArrayList<Double> coefficientSecond) {
         this.coefficientSecond = coefficientSecond;
     }
 
-    public ArrayList<Integer> getCoefficientThird() {
+    public ArrayList<Double> getCoefficientThird() {
         return coefficientThird;
     }
 
-    public void setCoefficientThird(ArrayList<Integer> coefficientThird) {
+    public void setCoefficientThird(ArrayList<Double> coefficientThird) {
         this.coefficientThird = coefficientThird;
     }
 
-    public ArrayList<Integer> getCoefficientFourth() {
+    public ArrayList<Double> getCoefficientFourth() {
         return coefficientFourth;
     }
 
-    public void setCoefficientFourth(ArrayList<Integer> coefficientFourth) {
+    public void setCoefficientFourth(ArrayList<Double> coefficientFourth) {
         this.coefficientFourth = coefficientFourth;
     }
 
-    public int getCountOfMultiplier() {
+    public double getCountOfMultiplier() {
         return countOfMultiplier;
     }
 
-    public void setCountOfMultiplier(int countOfMultiplier) {
+    public void setCountOfMultiplier(double countOfMultiplier) {
         this.countOfMultiplier = countOfMultiplier;
     }
 
-    public int getLargeMultiplier() {
+    public double getLargeMultiplier() {
         return largeMultiplier;
     }
 
-    public void setLargeMultiplier(int largeMultiplier) {
+    public void setLargeMultiplier(double largeMultiplier) {
         this.largeMultiplier = largeMultiplier;
     }
 

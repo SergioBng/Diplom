@@ -34,49 +34,49 @@ public class WorkWithFile {
         String[] parameters = readParameters().split("\r\n");
         for (String parameter : parameters) {
             if (parameter.contains("array1")){
-                ArrayList<Integer> arrayList = new ArrayList<>();
+                ArrayList<Double> arrayList = new ArrayList<>();
                 parameter = parameter.replace("array1[", "");
                 parameter = parameter.replace("]", "");
                 String[] arrayOfParameters = parameter.split(",");
                 for (int i = 0; i < arrayOfParameters.length; i++) {
-                    arrayList.add(Integer.parseInt(arrayOfParameters[i]));
+                    arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientFirst(arrayList);
             } else if (parameter.contains("array2")){
-                ArrayList<Integer> arrayList = new ArrayList<>();
+                ArrayList<Double> arrayList = new ArrayList<>();
                 parameter = parameter.replace("array2[", "");
                 parameter = parameter.replace("]", "");
                 String[] arrayOfParameters = parameter.split(",");
                 for (int i = 0; i < arrayOfParameters.length; i++) {
-                    arrayList.add(Integer.parseInt(arrayOfParameters[i]));
+                    arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientSecond(arrayList);
             } else if (parameter.contains("array3")){
-                ArrayList<Integer> arrayList = new ArrayList<>();
+                ArrayList<Double> arrayList = new ArrayList<>();
                 parameter = parameter.replace("array3[", "");
                 parameter = parameter.replace("]", "");
                 String[] arrayOfParameters = parameter.split(",");
                 for (int i = 0; i < arrayOfParameters.length; i++) {
-                    arrayList.add(Integer.parseInt(arrayOfParameters[i]));
+                    arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientThird(arrayList);
             } else if (parameter.contains("array4")){
-                ArrayList<Integer> arrayList = new ArrayList<>();
+                ArrayList<Double> arrayList = new ArrayList<>();
                 parameter = parameter.replace("array4[", "");
                 parameter = parameter.replace("]", "");
                 String[] arrayOfParameters = parameter.split(",");
                 for (int i = 0; i < arrayOfParameters.length; i++) {
-                    arrayList.add(Integer.parseInt(arrayOfParameters[i]));
+                    arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientFourth(arrayList);
             } else if (parameter.contains("val1")){
                 parameter = parameter.replace("val1[", "");
                 parameter = parameter.replace("]", "");
-                element.setCountOfMultiplier(Integer.parseInt(parameter));
+                element.setCountOfMultiplier(Double.parseDouble(parameter));
             } else if (parameter.contains("val2")){
                 parameter = parameter.replace("val2[", "");
                 parameter = parameter.replace("]", "");
-                element.setLargeMultiplier(Integer.parseInt(parameter));
+                element.setLargeMultiplier(Double.parseDouble(parameter));
             }
         }
         return element;
