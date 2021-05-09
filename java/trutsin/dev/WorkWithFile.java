@@ -70,8 +70,8 @@ public class WorkWithFile {
                     arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientFourth(arrayList);
-            } else if (parameter.contains("val2")){
-                parameter = parameter.replace("val2[", "");
+            } else if (parameter.contains("largeMultiplier")){
+                parameter = parameter.replace("largeMultiplier[", "");
                 parameter = parameter.replace("]", "");
                 element.setLargeMultiplier(Double.parseDouble(parameter));
             }

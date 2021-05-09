@@ -52,13 +52,16 @@ public class OperationWithElement {
 
     public Element transformation_AChH_In_FNCh(Element element) {
         Element newElement = new Element();
-
-        double newLargeCoefficientFirst =
-                Math.pow(element.getCoefficientFirst().get(0), element.getCoefficientFirst().get(1));
-
+//        -----------------------------First part---------------------------------------------
         int newCountOfMultiplierFirst = element.getCoefficientFirst().size() / 2;
 
-        //        First coefficient
+        ArrayList<Double> arrayOfLargeMultiplierFirst = new ArrayList<>();
+        for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
+            Double oldCoefficient = element.getCoefficientFirst().get(i);
+            arrayOfLargeMultiplierFirst.add(Math.pow(oldCoefficient, element.getCoefficientFirst().get(i+1)));
+        }
+
+//              First coefficient
         ArrayList<Double> intermediateArray = new ArrayList<>();
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
             Double oldCoefficient = element.getCoefficientFirst().get(i);
@@ -69,13 +72,32 @@ public class OperationWithElement {
         newElement.setCoefficientFirst(intermediateArray);
         intermediateArray.clear();
 
-        //        Second coefficient
+//        --------------------------------Second part-------------------------------------------
+        ArrayList<Double> arrayOfLargeMultiplierSecond = new ArrayList<>();
+        for (int i = 0; i < element.getCoefficientFirst().size(); i += 3) {
+            Double oldCoefficient = element.getCoefficientFirst().get(i);
+            arrayOfLargeMultiplierSecond.add(Math.pow(Math.pow(oldCoefficient, 2) +
+                    Math.pow(element.getCoefficientSecond().get(i+1), 2), element.getCoefficientSecond().get(i+2)));
+        }
+
+
+
+//                Second coefficient
         for (int i = 0; i < element.getCoefficientSecond().size(); i += 3) {
             Double oldCoefficient = element.getCoefficientSecond().get(i);
-            double newCoefficient = oldCoefficient *
+            double newCoefficientFirst = oldCoefficient *
                     Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(element.getCoefficientSecond().get(i+1), 2), -1);
-            element.getCoefficientSecond().set(i, newCoefficient);
+            intermediateArray.add(newCoefficientFirst);
+            double newCoefficientSecond = element.getCoefficientSecond().get(i+1) *
+                    Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(element.getCoefficientSecond().get(i+1), 2), -1);
+            intermediateArray.add(newCoefficientSecond);
+            intermediateArray.add(element.getCoefficientSecond().get(i+3));
         }
+        newElement.setCoefficientSecond(intermediateArray);
+        intermediateArray.clear();
+
+
+
 
 
         return newElement;
