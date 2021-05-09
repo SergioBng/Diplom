@@ -8,7 +8,7 @@ public class Element {
     private ArrayList<Double> coefficientSecond;
     private ArrayList<Double> coefficientThird;
     private ArrayList<Double> coefficientFourth;
-    private double countOfMultiplier;
+    private ArrayList<Double> arrayOfCountOfMultiplier;
     private double largeMultiplier;
 
     public Element() {
@@ -46,12 +46,12 @@ public class Element {
         this.coefficientFourth = coefficientFourth;
     }
 
-    public double getCountOfMultiplier() {
-        return countOfMultiplier;
+    public ArrayList<Double> getArrayOfCountOfMultiplier() {
+        return arrayOfCountOfMultiplier;
     }
 
-    public void setCountOfMultiplier(double countOfMultiplier) {
-        this.countOfMultiplier = countOfMultiplier;
+    public void setArrayOfCountOfMultiplier(ArrayList<Double> arrayOfCountOfMultiplier) {
+        this.arrayOfCountOfMultiplier = arrayOfCountOfMultiplier;
     }
 
     public double getLargeMultiplier() {
@@ -69,7 +69,7 @@ public class Element {
                 ", coefficientSecond=" + coefficientSecond +
                 ", coefficientThird=" + coefficientThird +
                 ", coefficientFourth=" + coefficientFourth +
-                ", countOfMultiplier=" + countOfMultiplier +
+                ", arrayOfCountOfMultiplier=" + arrayOfCountOfMultiplier +
                 ", largeMultiplier=" + largeMultiplier +
                 '}';
     }

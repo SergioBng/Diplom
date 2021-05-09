@@ -34,6 +34,7 @@ public class WorkWithFile {
         String[] parameters = readParameters().split("\r\n");
         for (String parameter : parameters) {
             if (parameter.contains("array1")){
+
                 ArrayList<Double> arrayList = new ArrayList<>();
                 parameter = parameter.replace("array1[", "");
                 parameter = parameter.replace("]", "");
@@ -69,10 +70,6 @@ public class WorkWithFile {
                     arrayList.add(Double.parseDouble(arrayOfParameters[i]));
                 }
                 element.setCoefficientFourth(arrayList);
-            } else if (parameter.contains("val1")){
-                parameter = parameter.replace("val1[", "");
-                parameter = parameter.replace("]", "");
-                element.setCountOfMultiplier(Double.parseDouble(parameter));
             } else if (parameter.contains("val2")){
                 parameter = parameter.replace("val2[", "");
                 parameter = parameter.replace("]", "");
@@ -82,4 +79,46 @@ public class WorkWithFile {
         return element;
     }
 
+//    public void ras() {
+//        Element element = new Element();
+//        String[] parameters = readParameters().split("\r\n");
+//        for (String parameter : parameters) {
+//            if (parameter.contains("array1")){
+//
+//                parameter = parameter.replace("array1[[", "");
+//                parameter = parameter.replace("][", "!");
+//                parameter = parameter.replace("]]", "");
+//
+//                String[] bigArrayOfParameters = parameter.split("!");
+//                double[][] arrayWithParameters;
+//
+//                for (int i = 0; i < bigArrayOfParameters.length; i++) {
+//                    String[] onlyParameters = bigArrayOfParameters[i].split(",");
+//
+//                    for (int j = 0; j < onlyParameters.length; j++) {
+//
+//                    }
+//                }
+//
+//                for (int i = 0; i < bigArrayOfParameters.length; i++) {
+//                    String[] onlyParameters = bigArrayOfParameters[i].split(",");
+//
+//
+//                    arrayWithParameters = new double[bigArrayOfParameters.length][onlyParameters.length];
+//                    for (int j = 0; j < onlyParameters.length; j++) {
+//
+//                        arrayWithParameters[i][j] = Double.parseDouble(onlyParameters[j]);
+//                    }
+//                    element.setCoefficientFirsts(arrayWithParameters);
+//                    System.out.println(element);
+////                    System.out.println(smallArrayOfParameters);
+//                }
+//
+////                for (int i = 0; i < bigArrayOfParameters.length; i++) {
+////                    arrayList.add(Double.parseDouble(bigArrayOfParameters[i]));
+////                }
+////                element.setCoefficientFirst(arrayList);
+//            }
+//        }
+//    }
 }
