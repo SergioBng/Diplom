@@ -9,23 +9,31 @@ public class OperationWithElement {
     }
 
     public Element denormirovanie(Element element, double normalizingFrequency) {
+        double degree1 = 0;
+        double degree2 = 0;
+        double degree3 = 0;
+        double degree4 = 0;
+
         //        First coefficient
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
             Double oldCoefficient = element.getCoefficientFirst().get(i);
             double newCoefficient = oldCoefficient * normalizingFrequency;
             element.getCoefficientFirst().set(i, newCoefficient);
+
+            degree1 += element.getCoefficientFirst().get(i + 1);
         }
 
         //        Second coefficient
         for (int i = 0; i < element.getCoefficientSecond().size(); i += 3) {
-            Double oldCoefficient = element.getCoefficientSecond().get(i);
-            double newCoefficient = oldCoefficient * normalizingFrequency;
-            element.getCoefficientSecond().set(i, newCoefficient);
-        }
-        for (int i = 1; i < element.getCoefficientSecond().size(); i += 3) {
-            Double oldCoefficient = element.getCoefficientSecond().get(i);
-            double newCoefficient = oldCoefficient * normalizingFrequency;
-            element.getCoefficientSecond().set(i, newCoefficient);
+            Double oldCoefficient1 = element.getCoefficientSecond().get(i);
+            double newCoefficient1 = oldCoefficient1 * normalizingFrequency;
+            element.getCoefficientSecond().set(i, newCoefficient1);
+
+            Double oldCoefficient2 = element.getCoefficientSecond().get(i + 1);
+            double newCoefficient2 = oldCoefficient2 * normalizingFrequency;
+            element.getCoefficientSecond().set(i + 1, newCoefficient2);
+
+            degree2 += element.getCoefficientSecond().get(i + 2);
         }
 
         //        Third coefficient
@@ -33,19 +41,24 @@ public class OperationWithElement {
             Double oldCoefficient = element.getCoefficientThird().get(i);
             double newCoefficient = oldCoefficient * normalizingFrequency;
             element.getCoefficientThird().set(i, newCoefficient);
+
+            degree3 += element.getCoefficientThird().get(i + 1);
         }
 
         //        Fourth coefficient
         for (int i = 0; i < element.getCoefficientFourth().size(); i += 3) {
-            Double oldCoefficient = element.getCoefficientFourth().get(i);
-            double newCoefficient = oldCoefficient * normalizingFrequency;
-            element.getCoefficientFourth().set(i, newCoefficient);
+            Double oldCoefficient1 = element.getCoefficientFourth().get(i);
+            double newCoefficient1 = oldCoefficient1 * normalizingFrequency;
+            element.getCoefficientFourth().set(i, newCoefficient1);
+
+            Double oldCoefficient2 = element.getCoefficientFourth().get(i + 1);
+            double newCoefficient2 = oldCoefficient2 * normalizingFrequency;
+            element.getCoefficientFourth().set(i + 1, newCoefficient2);
+
+            degree4 += element.getCoefficientFourth().get(i + 2);
         }
-        for (int i = 1; i < element.getCoefficientFourth().size(); i += 3) {
-            Double oldCoefficient = element.getCoefficientFourth().get(i);
-            double newCoefficient = oldCoefficient * normalizingFrequency;
-            element.getCoefficientFourth().set(i, newCoefficient);
-        }
+
+        element.setLargeMultiplier(degree1 + (2 * degree2) + degree3 + (2 * degree4));
 
         return element;
     }
@@ -110,8 +123,6 @@ public class OperationWithElement {
             arrayOfLargeMultiplierFourth.add(Math.pow(Math.pow(oldCoefficient, 2) +
                     Math.pow(element.getCoefficientFourth().get(i+1), 2), -element.getCoefficientFourth().get(i+2)));
         }
-
-
 
 //                Second coefficient
         ArrayList<Double> intermediateArray4 = new ArrayList<>();

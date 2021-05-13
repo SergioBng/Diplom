@@ -8,10 +8,10 @@ public class Demo {
         System.out.printf("\n\nOld: " + element.toString() + "\n\n");
 
         OperationWithElement operationWithElement = new OperationWithElement();
-//        Element newElement = operationWithElement.denormirovanie(element, 3);
-//        System.out.printf("New: " + newElement.toString());
+        Element newElement = operationWithElement.denormirovanie(element, 3);
+        System.out.printf("New: " + newElement.toString());
 
-        Element newElement2 = operationWithElement.transformation_AChH_In_FNCh(element);
-        System.out.printf("New: " + newElement2.toString());
+//        Element newElement2 = operationWithElement.transformation_AChH_In_FNCh(element);
+//        System.out.printf("New: " + newElement2.toString());
     }
 }

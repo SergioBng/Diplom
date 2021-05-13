@@ -8,8 +8,9 @@ public class Element {
     private ArrayList<Double> coefficientSecond;
     private ArrayList<Double> coefficientThird;
     private ArrayList<Double> coefficientFourth;
-    private ArrayList<Double> arrayOfCountOfMultiplier;
     private double largeMultiplier;
+    private int degreeV;
+    private int degreeG;
 
     public Element() {
     }
@@ -46,20 +47,28 @@ public class Element {
         this.coefficientFourth = coefficientFourth;
     }
 
-    public ArrayList<Double> getArrayOfCountOfMultiplier() {
-        return arrayOfCountOfMultiplier;
-    }
-
-    public void setArrayOfCountOfMultiplier(ArrayList<Double> arrayOfCountOfMultiplier) {
-        this.arrayOfCountOfMultiplier = arrayOfCountOfMultiplier;
-    }
-
     public double getLargeMultiplier() {
         return largeMultiplier;
     }
 
     public void setLargeMultiplier(double largeMultiplier) {
         this.largeMultiplier = largeMultiplier;
+    }
+
+    public int getDegreeV() {
+        return degreeV;
+    }
+
+    public void setDegreeV(int degreeV) {
+        this.degreeV = degreeV;
+    }
+
+    public int getDegreeG() {
+        return degreeG;
+    }
+
+    public void setDegreeG(int degreeG) {
+        this.degreeG = degreeG;
     }
 
     @Override
@@ -69,7 +78,6 @@ public class Element {
                 ", coefficientSecond=" + coefficientSecond +
                 ", coefficientThird=" + coefficientThird +
                 ", coefficientFourth=" + coefficientFourth +
-                ", arrayOfCountOfMultiplier=" + arrayOfCountOfMultiplier +
                 ", largeMultiplier=" + largeMultiplier +
                 '}';
     }
