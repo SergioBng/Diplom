@@ -58,7 +58,8 @@ public class OperationWithElement {
             degree4 += element.getCoefficientFourth().get(i + 2);
         }
 
-        element.setLargeMultiplier(degree1 + (2 * degree2) + degree3 + (2 * degree4));
+        element.setLargeMultiplier(Math.pow(element.getLargeMultiplier(),
+                (degree3 + (2 * degree4)) - (degree1 + (2 * degree2))));
 
         return element;
     }
@@ -71,8 +72,6 @@ public class OperationWithElement {
         double degree4 = 1;
 
 //        -----------------------------First part---------------------------------------------
-
-        int newCountOfMultiplierFirst = element.getCoefficientFirst().size() / 2;
 
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
             Double oldCoefficient = element.getCoefficientFirst().get(i);
@@ -115,6 +114,14 @@ public class OperationWithElement {
 
 //        ---------------------------Third part----------------------------------------------------------
 
+        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
+            int numberOfLarge
+            Double oldCoefficient = element.getCoefficientThird().get(i);
+            if (oldCoefficient != 0 && ) {
+                degree3 *= Math.pow(oldCoefficient, -element.getCoefficientThird().get(i + 1));
+
+            }
+        }
 
 
 //        ---------------------------Fourth part---------------------------------------------------------
