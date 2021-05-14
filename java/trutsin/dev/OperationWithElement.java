@@ -66,16 +66,21 @@ public class OperationWithElement {
 
     public Element transformation_AChH_In_FNCh(Element element) {
         Element newElement = new Element();
-        double degree1 = 1;
-        double degree2 = 1;
-        double degree3 = 1;
-        double degree4 = 1;
+        double multipliedLargeMultiplier1 = 1;
+        double multipliedLargeMultiplier2 = 1;
+        double multipliedLargeMultiplier3 = 1;
+        double multipliedLargeMultiplier4 = 1;
+        double sumOfDegree1 = 0;
+        double sumOfDegree2 = 0;
+        double sumOfDegree3 = 0;
+        double sumOfDegree4 = 0;
 
 //        -----------------------------First part---------------------------------------------
 
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
             Double oldCoefficient = element.getCoefficientFirst().get(i);
-            degree1 *= Math.pow(oldCoefficient, element.getCoefficientFirst().get(i + 1));
+            multipliedLargeMultiplier1 *= Math.pow(oldCoefficient, element.getCoefficientFirst().get(i + 1));
+            sumOfDegree1 += element.getCoefficientFirst().get(i + 1);
         }
 
 //              First coefficient
@@ -92,8 +97,9 @@ public class OperationWithElement {
 
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 3) {
             Double oldCoefficient = element.getCoefficientFirst().get(i);
-            degree2 *= Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(element.getCoefficientSecond().get(i + 1), 2),
+            multipliedLargeMultiplier2 *= Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(element.getCoefficientSecond().get(i + 1), 2),
                     element.getCoefficientSecond().get(i + 2));
+            sumOfDegree2 += element.getCoefficientSecond().get(i + 2);
         }
 
 
@@ -112,24 +118,13 @@ public class OperationWithElement {
         }
         newElement.setCoefficientSecond(intermediateArray2);
 
-//        ---------------------------Third part----------------------------------------------------------
-
-        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
-            int numberOfLarge
-            Double oldCoefficient = element.getCoefficientThird().get(i);
-            if (oldCoefficient != 0 && ) {
-                degree3 *= Math.pow(oldCoefficient, -element.getCoefficientThird().get(i + 1));
-
-            }
-        }
-
-
 //        ---------------------------Fourth part---------------------------------------------------------
 
         for (int i = 0; i < element.getCoefficientFourth().size(); i += 3) {
             Double oldCoefficient = element.getCoefficientFourth().get(i);
-            degree4 *= Math.pow(Math.pow(oldCoefficient, 2) +
+            multipliedLargeMultiplier4 *= Math.pow(Math.pow(oldCoefficient, 2) +
                     Math.pow(element.getCoefficientFourth().get(i + 1), 2), -element.getCoefficientFourth().get(i + 2));
+            sumOfDegree4 += element.getCoefficientFourth().get(i + 2);
         }
 
 //                Fourth coefficient
@@ -145,6 +140,59 @@ public class OperationWithElement {
             intermediateArray4.add(element.getCoefficientFourth().get(i+2));
         }
         newElement.setCoefficientFourth(intermediateArray4);
+
+
+//      ---------------------------Third part----------------------------------------------------------
+
+        int countOfMultipliers = element.getCoefficientThird().size() / 2;
+        int notNull = 0;
+
+//        Check on zero in coefficient a
+        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
+            Double oldCoefficient = element.getCoefficientThird().get(i);
+            sumOfDegree3 += element.getCoefficientThird().get(i + 1);
+            if (oldCoefficient != 0) {
+                notNull += 1;
+            }
+        }
+        if (notNull == countOfMultipliers) {
+            countOfMultipliers += 1;
+            sumOfDegree3 +=1;
+        }
+        double commonSumOfDegree = (sumOfDegree1 + (2 * sumOfDegree2)) - (sumOfDegree3 + (2 * sumOfDegree4));
+
+//        Multiplying Large Multiplier
+        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
+            int numberOfLargeMultiplier = 1;
+            Double oldCoefficient = element.getCoefficientThird().get(i);
+            if (oldCoefficient != 0 && numberOfLargeMultiplier < countOfMultipliers) {
+                multipliedLargeMultiplier3 *= Math.pow(oldCoefficient, -element.getCoefficientThird().get(i + 1));
+            } else {
+                multipliedLargeMultiplier3 *= 1;
+            }
+        }
+
+//        Third coefficient
+        ArrayList<Double> intermediateArray3 = new ArrayList<>();
+        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
+            int numberOfLargeMultiplier = 1;
+            Double oldCoefficientFirst = element.getCoefficientThird().get(i);
+            double newCoefficientFirst;
+            double newCoefficientSecond;
+            if (oldCoefficientFirst != 0 && numberOfLargeMultiplier < countOfMultipliers) {
+                newCoefficientFirst = Math.pow(oldCoefficientFirst, -1);
+                newCoefficientSecond = element.getCoefficientThird().get(i + 1);
+            } else {
+                newCoefficientFirst = 0;
+                newCoefficientSecond = commonSumOfDegree;
+            }
+            intermediateArray3.add(newCoefficientFirst);
+            intermediateArray3.add(newCoefficientSecond);
+            numberOfLargeMultiplier++;
+        }
+        newElement.setCoefficientThird(intermediateArray3);
+        newElement.setLargeMultiplier(element.getLargeMultiplier() * multipliedLargeMultiplier1
+                * multipliedLargeMultiplier2 * multipliedLargeMultiplier3 * multipliedLargeMultiplier4);
 
         return newElement;
     }
