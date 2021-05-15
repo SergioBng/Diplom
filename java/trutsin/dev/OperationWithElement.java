@@ -1,6 +1,8 @@
 package trutsin.dev;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OperationWithElement {
     private double normalizingFrequency;
@@ -197,8 +199,7 @@ public class OperationWithElement {
         return newElement;
     }
 
-    public double getAChHOfElementByCurrentFrequency(Element element, double frequency) {
-        ElementForAChH elementForAChH = new ElementForAChH();
+    private double getAChHOfElementByCurrentFrequency(Element element, double frequency) {
         double newCoefficientFirst = 1;
         double newCoefficientSecond = 1;
         double newCoefficientThird = 1;
@@ -211,7 +212,6 @@ public class OperationWithElement {
             double intermediateCoefficient = Math.sqrt(Math.pow(oldCoefficient, 2) + Math.pow(frequency, 2));
             newCoefficientFirst *= Math.pow(intermediateCoefficient, element.getCoefficientFirst().get(i + 1));
         }
-        elementForAChH.setCoefficientFirst(newCoefficientFirst);
 
 //        Second coefficient
         for (int i = 0; i < element.getCoefficientSecond().size(); i += 3) {
@@ -222,7 +222,6 @@ public class OperationWithElement {
                     Math.pow(2 * oldCoefficient * frequency, 2));
             newCoefficientSecond *= Math.pow(intermediateCoefficient, element.getCoefficientSecond().get(i + 2));
         }
-        elementForAChH.setCoefficientSecond(newCoefficientSecond);
 
 //        Third coefficient
         for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
@@ -230,7 +229,6 @@ public class OperationWithElement {
             double intermediateCoefficient = Math.sqrt(Math.pow(oldCoefficient, 2) + Math.pow(frequency, 2));
             newCoefficientThird *= Math.pow(intermediateCoefficient, element.getCoefficientThird().get(i + 1));
         }
-        elementForAChH.setCoefficientThird(newCoefficientThird);
 
 //        Fourth coefficient
         for (int i = 0; i < element.getCoefficientFourth().size(); i += 3) {
@@ -241,16 +239,23 @@ public class OperationWithElement {
                             Math.pow(2 * oldCoefficient * frequency, 2));
             newCoefficientFourth *= Math.pow(intermediateCoefficient, element.getCoefficientFourth().get(i + 2));
         }
-        elementForAChH.setCoefficientFourth(newCoefficientFourth);
 
 //        Large multiplier
         double newLargeMultiplier = Math.abs(element.getLargeMultiplier());
-        elementForAChH.setLargeMultiplier(newLargeMultiplier);
 
 //        Multiplication of final coefficients
         double finalAChH = (newCoefficientThird * newCoefficientFourth) /
                 (newLargeMultiplier * newCoefficientFirst * newCoefficientSecond);
 
         return finalAChH;
+    }
+
+    public Map<Double, Double> getAChHOfElementByAllFrequencies(Element element, ArrayList<Double> allFrequencies) {
+        Map<Double, Double> mapWithFrequencyAndAChH = new HashMap<>();
+
+        for (double frequency : allFrequencies) {
+            mapWithFrequencyAndAChH.put(frequency, getAChHOfElementByCurrentFrequency(element, frequency));
+        }
+        return mapWithFrequencyAndAChH;
     }
 }
