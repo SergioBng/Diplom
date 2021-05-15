@@ -196,4 +196,61 @@ public class OperationWithElement {
 
         return newElement;
     }
+
+    public double getAChHOfElementByCurrentFrequency(Element element, double frequency) {
+        ElementForAChH elementForAChH = new ElementForAChH();
+        double newCoefficientFirst = 1;
+        double newCoefficientSecond = 1;
+        double newCoefficientThird = 1;
+        double newCoefficientFourth = 1;
+
+
+//          First coefficient
+        for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
+            double oldCoefficient = element.getCoefficientFirst().get(i);
+            double intermediateCoefficient = Math.sqrt(Math.pow(oldCoefficient, 2) + Math.pow(frequency, 2));
+            newCoefficientFirst *= Math.pow(intermediateCoefficient, element.getCoefficientFirst().get(i + 1));
+        }
+        elementForAChH.setCoefficientFirst(newCoefficientFirst);
+
+//        Second coefficient
+        for (int i = 0; i < element.getCoefficientSecond().size(); i += 3) {
+            double oldCoefficient = element.getCoefficientSecond().get(i);
+            double oldFrequency = element.getCoefficientSecond().get(i + 1);
+            double intermediateCoefficient = Math.sqrt(
+                    Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(oldFrequency, 2) + Math.pow(frequency, 2), 2) +
+                    Math.pow(2 * oldCoefficient * frequency, 2));
+            newCoefficientSecond *= Math.pow(intermediateCoefficient, element.getCoefficientSecond().get(i + 2));
+        }
+        elementForAChH.setCoefficientSecond(newCoefficientSecond);
+
+//        Third coefficient
+        for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
+            double oldCoefficient = element.getCoefficientThird().get(i);
+            double intermediateCoefficient = Math.sqrt(Math.pow(oldCoefficient, 2) + Math.pow(frequency, 2));
+            newCoefficientThird *= Math.pow(intermediateCoefficient, element.getCoefficientThird().get(i + 1));
+        }
+        elementForAChH.setCoefficientThird(newCoefficientThird);
+
+//        Fourth coefficient
+        for (int i = 0; i < element.getCoefficientFourth().size(); i += 3) {
+            double oldCoefficient = element.getCoefficientFourth().get(i);
+            double oldFrequency = element.getCoefficientFourth().get(i + 1);
+            double intermediateCoefficient = Math.sqrt(
+                    Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(oldFrequency, 2) - Math.pow(frequency, 2), 2) +
+                            Math.pow(2 * oldCoefficient * frequency, 2));
+            newCoefficientFourth *= Math.pow(intermediateCoefficient, element.getCoefficientFourth().get(i + 2));
+        }
+        elementForAChH.setCoefficientFourth(newCoefficientFourth);
+
+//        Large multiplier
+        double newLargeMultiplier = Math.abs(element.getLargeMultiplier());
+        elementForAChH.setLargeMultiplier(newLargeMultiplier);
+
+//        Multiplication of final coefficients
+        double finalAChH = (newCoefficientThird * newCoefficientFourth) /
+                (newLargeMultiplier * newCoefficientFirst * newCoefficientSecond);
+
+        return finalAChH;
+    }
 }
