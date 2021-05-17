@@ -66,7 +66,7 @@ public class OperationWithElement {
         return element;
     }
 
-    public Element transformation_AChH_In_FNCh(Element element) {
+    public Element transformation_FNCh_In_FVCh(Element element) {
         Element newElement = new Element();
         double multipliedLargeMultiplier1 = 1;
         double multipliedLargeMultiplier2 = 1;
@@ -257,5 +257,15 @@ public class OperationWithElement {
             mapWithFrequencyAndAChH.put(frequency, getAChHOfElementByCurrentFrequency(element, frequency));
         }
         return mapWithFrequencyAndAChH;
+    }
+
+    public ArrayList<Double> getFrequencies() {
+        ArrayList<Double> frequencies = new ArrayList<>();
+        frequencies.add(1.0);
+        frequencies.add(2.0);
+        frequencies.add(3.0);
+        frequencies.add(4.0);
+        frequencies.add(5.0);
+        return frequencies;
     }
 }

@@ -23,7 +23,7 @@ public class Demo extends Application {
 //        Element newElement = operationWithElement.denormirovanie(element, 3);
 //        System.out.printf("New: " + newElement.toString());
 
-        Element newElement2 = operationWithElement.transformation_AChH_In_FNCh(element);
+        Element newElement2 = operationWithElement.transformation_FNCh_In_FVCh(element);
         System.out.printf("New: " + newElement2.toString());
 
 
@@ -88,7 +88,7 @@ public class Demo extends Application {
         if (input == 1) {
             mapWithAChH = operationWithElement.getAChHOfElementByAllFrequencies(element, frequencies);
         } else if (input == 3) {
-            Element newElement = operationWithElement.transformation_AChH_In_FNCh(element);
+            Element newElement = operationWithElement.transformation_FNCh_In_FVCh(element);
             mapWithAChH = operationWithElement.getAChHOfElementByAllFrequencies(newElement, frequencies);
         } else {
             workWithMenu();

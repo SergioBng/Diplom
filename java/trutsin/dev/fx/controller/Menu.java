@@ -1,10 +1,10 @@
 package trutsin.dev.fx.controller;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +41,15 @@ public class Menu {
     private Button findAChHButton;
 
     @FXML
+    private Button transformFNChInFVChButton;
+
+    @FXML
+    private Button transformFNChInPfButton;
+
+    @FXML
+    private Button transformFNChInZfButton;
+
+    @FXML
     void findAChH(javafx.event.ActionEvent actionEvent) {
         findAChHButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
             @Override
@@ -59,5 +68,19 @@ public class Menu {
                 stage.show();
             }
         });
+    }
+
+
+    public void transformFNChInFVCh(ActionEvent actionEvent) {
+
+    }
+
+
+    public void transformFNChInPf(ActionEvent actionEvent) {
+
+    }
+
+    public void transformFNChInZf(ActionEvent actionEvent) {
+
     }
 }
