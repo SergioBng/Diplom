@@ -72,7 +72,20 @@ public class Menu {
 
 
     public void transformFNChInFVCh(ActionEvent actionEvent) {
+        transformFNChInFVChButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/graphicFVCh.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
     }
 
 
