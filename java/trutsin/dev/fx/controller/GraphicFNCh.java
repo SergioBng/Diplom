@@ -13,7 +13,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import trutsin.dev.*;
 
-public class Graphic {
+public class GraphicFNCh {
 
 
     @FXML

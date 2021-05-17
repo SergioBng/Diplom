@@ -55,7 +55,7 @@ public class Menu {
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("../view/graphic.fxml"));
+                loader.setLocation(getClass().getResource("../view/graphicFNCh.fxml"));
                 try {
                     loader.load();
                 } catch (IOException e) {
