@@ -9,8 +9,6 @@ public class Element {
     private ArrayList<Double> coefficientThird;
     private ArrayList<Double> coefficientFourth;
     private double largeMultiplier;
-    private int degreeV;
-    private int degreeG;
 
     public Element() {
     }
@@ -53,22 +51,6 @@ public class Element {
 
     public void setLargeMultiplier(double largeMultiplier) {
         this.largeMultiplier = largeMultiplier;
-    }
-
-    public int getDegreeV() {
-        return degreeV;
-    }
-
-    public void setDegreeV(int degreeV) {
-        this.degreeV = degreeV;
-    }
-
-    public int getDegreeG() {
-        return degreeG;
-    }
-
-    public void setDegreeG(int degreeG) {
-        this.degreeG = degreeG;
     }
 
     @Override
