@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OperationWithElement {
-    private double normalizingFrequency;
 
     public OperationWithElement() {
     }
@@ -167,7 +166,7 @@ public class OperationWithElement {
         for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
             int numberOfLargeMultiplier = 1;
             Double oldCoefficient = element.getCoefficientThird().get(i);
-            if (oldCoefficient != 0 && numberOfLargeMultiplier < countOfMultipliers) {
+            if (oldCoefficient != 0 & numberOfLargeMultiplier < countOfMultipliers) {
                 multipliedLargeMultiplier3 *= Math.pow(oldCoefficient, -element.getCoefficientThird().get(i + 1));
             } else {
                 multipliedLargeMultiplier3 *= 1;
@@ -181,7 +180,7 @@ public class OperationWithElement {
             Double oldCoefficientFirst = element.getCoefficientThird().get(i);
             double newCoefficientFirst;
             double newCoefficientSecond;
-            if (oldCoefficientFirst != 0 && numberOfLargeMultiplier < countOfMultipliers) {
+            if (oldCoefficientFirst != 0 & numberOfLargeMultiplier < countOfMultipliers) {
                 newCoefficientFirst = Math.pow(oldCoefficientFirst, -1);
                 newCoefficientSecond = element.getCoefficientThird().get(i + 1);
             } else {
@@ -267,5 +266,33 @@ public class OperationWithElement {
         frequencies.add(4.0);
         frequencies.add(5.0);
         return frequencies;
+    }
+
+    public void transformation_FNCh_In_PF(Element element, double parameterOfTransform) {
+        Element newElement = new Element();
+
+//        First coefficient
+
+        ArrayList<Double> intermediateArray1 = new ArrayList<>();
+        for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
+            double oldCoefficient = element.getCoefficientFirst().get(i);
+            double oldDegree = element.getCoefficientFirst().get(i + 1);
+            double parameterD1 = Math.sqrt(Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2)));
+            double newCoefficient = 0;
+            double newDegree = 0;
+            if (parameterD1 > 0 & ((i + 1) % 2) != 0) {
+                newCoefficient = (oldCoefficient - Math.sqrt(parameterD1)) / (2 * parameterOfTransform);
+                newDegree = oldDegree;
+            } else if (parameterD1 > 0 & ((i + 1) % 2) == 0) {
+                newCoefficient = (oldCoefficient + Math.sqrt(parameterD1)) / (2 * parameterOfTransform);
+                newDegree = oldDegree;
+            } else if (parameterD1 == 0) {
+                newCoefficient = oldCoefficient / (2 * parameterOfTransform);
+                newDegree = 2 * oldDegree;
+            }
+            intermediateArray1.add(newCoefficient);
+            intermediateArray1.add(newDegree);
+        }
+
     }
 }
