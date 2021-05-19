@@ -20,6 +20,15 @@ public class Demo{
 //        Element newElement3 = operationWithElement.transformation_FNCh_In_PF(element, 1);
 //        System.out.printf("New: " + newElement3.toString());
 
+        int i = 14;
 
+        if (i == 14) {
+            System.out.println(i);
+        } else if (i == 15) {
+            System.out.println(15);
+        }
+        if (i % 2 == 0) {
+            System.out.println("chet");
+        }
     }
 }

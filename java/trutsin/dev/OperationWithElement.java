@@ -292,11 +292,11 @@ public class OperationWithElement {
             double parameterD = Math.sqrt(Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2)));
 
 //            New coefficients
-            double newCoefficient1 = 0;
-            double newCoefficient2 = 0;
-            double newFrequencyForEnterInArray2 = 0;
-            double newDegree1 = 0;
-            double newDegree2 = 0;
+            double newCoefficient1;
+            double newCoefficient2;
+            double newFrequencyForEnterInArray2;
+            double newDegree1;
+            double newDegree2;
             if (parameterD > 0) {
                 newCoefficient1 = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
                 newCoefficient2 = (oldCoefficient + Math.sqrt(parameterD)) / (2 * parameterOfTransform);
@@ -349,12 +349,12 @@ public class OperationWithElement {
             }
 
 //            New coefficients
-            double newCoefficient1 = 0;
-            double newCoefficient2 = 0;
-            double newFrequency1 = 0;
-            double newFrequency2 = 0;
-            double newDegree1 = 0;
-            double newDegree2 = 0;
+            double newCoefficient1;
+            double newCoefficient2;
+            double newFrequency1;
+            double newFrequency2;
+            double newDegree1;
+            double newDegree2;
             newCoefficient1 = (oldCoefficient - (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
                     (2 * parameterOfTransform);
             newFrequency1 = Math.abs((oldFrequency + (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
@@ -378,6 +378,8 @@ public class OperationWithElement {
 //        Third coefficient
 
         ArrayList<Double> intermediateArray3 = new ArrayList<>();
+        double newCoefficient3InThirdCoefficient = 0;
+        double newDegree3InThirdCoefficient = 0;
         for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
 
 //            Old coefficients and parameter
@@ -386,21 +388,35 @@ public class OperationWithElement {
             double parameterD = Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2));
 
 //            New coefficients  ????????? no
-            double newCoefficient = 0;
-            double newDegree = 0;
-            if (parameterD > 0 & oldCoefficient != 0 & ((i + 1) % 2) != 0) {
-                newCoefficient = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
-                newDegree = oldDegree;
-            } else if (parameterD > 0 & oldCoefficient != 0 & ((i + 1) % 2) == 0) {
-                newCoefficient = (oldCoefficient + Math.sqrt(parameterD)) / (2 * parameterOfTransform);
-                newDegree = oldDegree;
+            double newCoefficient1;
+            double newCoefficient2;
+            double newDegree1;
+            double newDegree2;
+            if (parameterD > 0 & oldCoefficient != 0) {
+                newCoefficient1 = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
+                newDegree1 = oldDegree;
+                newCoefficient2 = (oldCoefficient + Math.sqrt(parameterD)) / (2 * parameterOfTransform);
+                newDegree2 = oldDegree;
+                intermediateArray3.add(newCoefficient1);
+                intermediateArray3.add(newDegree1);
+                intermediateArray3.add(newCoefficient2);
+                intermediateArray3.add(newDegree2);
             } else if (parameterD == 0 & oldCoefficient != 0) {
-                newCoefficient = oldCoefficient / (2 * parameterOfTransform);
-                newDegree = 2 * oldDegree;
+                newCoefficient1 = oldCoefficient / (2 * parameterOfTransform);
+                newDegree1 = 2 * oldDegree;
+                intermediateArray3.add(newCoefficient1);
+                intermediateArray3.add(newDegree1);
             }
-            intermediateArray3.add(newCoefficient);
-            intermediateArray3.add(newDegree);
+            if (oldCoefficient != 0) {
+                newCoefficient3InThirdCoefficient = 0;
+                newDegree3InThirdCoefficient += 1;
+            } else {
+                newCoefficient3InThirdCoefficient = oldCoefficient;
+                newDegree3InThirdCoefficient += oldDegree;
+            }
         }
+        intermediateArray3.add(newCoefficient3InThirdCoefficient);
+        intermediateArray3.add(newDegree3InThirdCoefficient);
 
 //        Fourth coefficient
 
