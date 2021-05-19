@@ -275,11 +275,6 @@ public class OperationWithElement {
     public Element transformation_FNCh_In_PF(Element element, double parameterOfTransform) {
         Element newElement = new Element();
 
-//        Large multiplier
-        int degreeV = (element.getCoefficientFirst().size() / 2) + 2 * (element.getCoefficientSecond().size() / 3);
-        int degreeG = (element.getCoefficientThird().size() / 2) + 2 * (element.getCoefficientFourth().size() / 3);
-        double newLargeMultiplier = element.getLargeMultiplier() * Math.pow(parameterOfTransform, degreeV - degreeG);
-
 //        First coefficient
 
         ArrayList<Double> intermediateArray1 = new ArrayList<>();
@@ -378,7 +373,9 @@ public class OperationWithElement {
 //        Third coefficient
 
         ArrayList<Double> intermediateArray3 = new ArrayList<>();
+        ArrayList<Double> intermediateArray3ForEnterInArray4 = new ArrayList<>();
         double newCoefficient3InThirdCoefficient = 0;
+        double newFrequency2ForEnterInArray4 = 0;
         double newDegree3InThirdCoefficient = 0;
         for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
 
@@ -387,11 +384,14 @@ public class OperationWithElement {
             double oldDegree = element.getCoefficientThird().get(i + 1);
             double parameterD = Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2));
 
-//            New coefficients  ????????? no
+//            New coefficients
             double newCoefficient1;
             double newCoefficient2;
             double newDegree1;
             double newDegree2;
+            double newCoefficientForEnterInArray4;
+            double newDegreeForEnterInArray4;
+            double newFrequency1ForEnterInArray4;
             if (parameterD > 0 & oldCoefficient != 0) {
                 newCoefficient1 = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
                 newDegree1 = oldDegree;
@@ -412,8 +412,20 @@ public class OperationWithElement {
                 newDegree3InThirdCoefficient += 1;
             } else {
                 newCoefficient3InThirdCoefficient = oldCoefficient;
+                newFrequency2ForEnterInArray4 = 1;
                 newDegree3InThirdCoefficient += oldDegree;
             }
+
+//            Find parameters for four coefficient
+            if (parameterD < 0 & oldCoefficient != 0) {
+                newCoefficientForEnterInArray4 = oldCoefficient / (2 * parameterOfTransform);
+                newFrequency1ForEnterInArray4 = Math.abs(Math.sqrt(-parameterD) / (2 * parameterOfTransform));
+                newDegreeForEnterInArray4 = oldDegree;
+                intermediateArray3ForEnterInArray4.add(newCoefficientForEnterInArray4);
+                intermediateArray3ForEnterInArray4.add(newFrequency1ForEnterInArray4);
+                intermediateArray3ForEnterInArray4.add(newDegreeForEnterInArray4);
+            }
+
         }
         intermediateArray3.add(newCoefficient3InThirdCoefficient);
         intermediateArray3.add(newDegree3InThirdCoefficient);
@@ -445,42 +457,45 @@ public class OperationWithElement {
                 parameterFi = Math.PI / 2;
             }
 
-//            Coefficients from Third
-            int j = 0;
-            double oldCoefficientFromThird = element.getCoefficientThird().get(j);
-            double oldDegreeFromThird = element.getCoefficientThird().get(j + 1);
-            double parameterDFromThird = Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2));
-            j += 2;
-
 //            New coefficients
-            double newCoefficient = 0;
-            double newFrequency = 0;
-            double newDegree = 0;
-            if (((i + 1) % 2) != 0) {
-                newCoefficient = (oldCoefficient - (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
-                        (2 * parameterOfTransform);
-                newFrequency = Math.abs((oldFrequency + (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
+            double newCoefficient1 = 0;
+            double newCoefficient2 = 0;
+            double newFrequency1 = 0;
+            double newFrequency2 = 0;
+            double newDegree1 = 0;
+            double newDegree2 = 0;
+
+            newCoefficient1 = (oldCoefficient - (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
+                    (2 * parameterOfTransform);
+            newFrequency1 = Math.abs((oldFrequency + (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
+                    (2 * parameterOfTransform));
+            newDegree1 = oldDegree;
+            newCoefficient2 = (oldCoefficient + (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
+                    (2 * parameterOfTransform);
+            newFrequency2 = Math.abs((oldFrequency - (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
                         (2 * parameterOfTransform));
-                newDegree = oldDegree;
-            } else if (((i + 1) % 2) == 0) {
-                newCoefficient = (oldCoefficient + (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
-                        (2 * parameterOfTransform);
-                newFrequency = Math.abs((oldFrequency - (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
-                        (2 * parameterOfTransform));
-                newDegree = oldDegree;
-            } else if (parameterDFromThird < 0 & oldCoefficientFromThird != 0) {
-                newCoefficient = oldCoefficientFromThird / (2 * parameterOfTransform);
-                newFrequency = Math.abs(Math.sqrt(-parameterDFromThird) / (2 * parameterOfTransform));
-                newDegree = oldDegreeFromThird;
-            } else if (oldCoefficientFromThird == 0) {
-                newCoefficient = 0;
-                newFrequency = 1;
-                newDegree = oldDegreeFromThird;
-            }
-            intermediateArray4.add(newCoefficient);
-            intermediateArray4.add(newFrequency);
-            intermediateArray4.add(newDegree);
+            newDegree2 = oldDegree;
+            intermediateArray4.add(newCoefficient1);
+            intermediateArray4.add(newFrequency1);
+            intermediateArray4.add(newDegree1);
+            intermediateArray4.add(newCoefficient2);
+            intermediateArray4.add(newFrequency2);
+            intermediateArray4.add(newDegree2);
         }
+
+//        Set parameters from 3rd coefficient
+        intermediateArray4.addAll(intermediateArray3ForEnterInArray4);
+        if (newFrequency2ForEnterInArray4 == 1) {
+            intermediateArray4.add(0.0);
+            intermediateArray4.add(newFrequency2ForEnterInArray4);
+            intermediateArray4.add(newDegree3InThirdCoefficient);
+        }
+
+//        Large multiplier
+        int degreeV = (intermediateArray1.size() / 2) + 2 * (intermediateArray2.size() / 3);
+        int degreeG = (intermediateArray3.size() / 2) + 2 * (intermediateArray4.size() / 3);
+        double newLargeMultiplier = element.getLargeMultiplier() * Math.pow(parameterOfTransform, degreeV - degreeG);
+
 
 //        Set in new entity
         newElement.setCoefficientFirst(intermediateArray1);
