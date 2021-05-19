@@ -28,20 +28,22 @@ public class GraphicPf {
 
     @FXML
     void createGraphic(ActionEvent event) {
-        XYChart.Series series = new XYChart.Series();
-        series.setName("АЧХ");
+        createButton.setOnAction(e -> {
+            XYChart.Series series = new XYChart.Series();
+            series.setName("АЧХ");
 
-        WorkWithFile workWithFile = new WorkWithFile();
-        Element element = workWithFile.setParametersFromFile();
-        OperationWithElement operation = new OperationWithElement();
-        Element newElement = operation.transformation_FNCh_In_PF(element, 1);
-        Map<Double, Double> findAChH =
-                operation.getAChHOfElementByAllFrequencies(newElement, operation.getFrequencies());
-        for (Map.Entry entry : findAChH.entrySet()) {
-            String finalX = String.format("%.2f" ,entry.getKey());
-            series.getData().add(new XYChart.Data(finalX, entry.getValue()));
-        }
+            WorkWithFile workWithFile = new WorkWithFile();
+            Element element = workWithFile.setParametersFromFile();
+            OperationWithElement operation = new OperationWithElement();
+            Element newElement = operation.transformation_FNCh_In_PF(element, 1);
+            Map<Double, Double> findAChH =
+                    operation.getAChHOfElementByAllFrequencies(newElement, operation.getFrequencies());
+            for (Map.Entry entry : findAChH.entrySet()) {
+                String finalX = String.format("%.2f" ,entry.getKey());
+                series.getData().add(new XYChart.Data(finalX, entry.getValue()));
+            }
 
-        chart.getData().addAll(series);
+            chart.getData().addAll(series);
+        });
     }
 }

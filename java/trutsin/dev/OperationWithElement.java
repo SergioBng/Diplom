@@ -291,20 +291,26 @@ public class OperationWithElement {
             double parameterD = Math.sqrt(Math.pow(oldCoefficient, 2) - (4 * Math.pow(parameterOfTransform, 2)));
 
 //            New coefficients
-            double newCoefficient = 0;
-            double newDegree = 0;
-            if (parameterD > 0 & ((i + 1) % 2) != 0) {
-                newCoefficient = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
-                newDegree = oldDegree;
-            } else if (parameterD > 0 & ((i + 1) % 2) == 0) {
-                newCoefficient = (oldCoefficient + Math.sqrt(parameterD)) / (2 * parameterOfTransform);
-                newDegree = oldDegree;
+            double newCoefficient1 = 0;
+            double newCoefficient2 = 0;
+            double newDegree1 = 0;
+            double newDegree2 = 0;
+            if (parameterD > 0) {
+                newCoefficient1 = (oldCoefficient - Math.sqrt(parameterD)) / (2 * parameterOfTransform);
+                newCoefficient2 = (oldCoefficient + Math.sqrt(parameterD)) / (2 * parameterOfTransform);
+                newDegree1 = oldDegree;
+                newDegree2 = oldDegree;
+                intermediateArray1.add(newCoefficient1);
+                intermediateArray1.add(newDegree1);
+                intermediateArray1.add(newCoefficient2);
+                intermediateArray1.add(newDegree2);
             } else if (parameterD == 0) {
-                newCoefficient = oldCoefficient / (2 * parameterOfTransform);
-                newDegree = 2 * oldDegree;
+                newCoefficient1 = oldCoefficient / (2 * parameterOfTransform);
+                newDegree1 = 2 * oldDegree;
+                intermediateArray1.add(newCoefficient1);
+                intermediateArray1.add(newDegree1);
             }
-            intermediateArray1.add(newCoefficient);
-            intermediateArray1.add(newDegree);
+
         }
         newElement.setCoefficientFirst(intermediateArray1);
 
