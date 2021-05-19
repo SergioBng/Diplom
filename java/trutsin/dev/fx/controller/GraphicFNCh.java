@@ -49,6 +49,7 @@ public class GraphicFNCh {
             Map<Double, Double> findAChH =
                     operation.getAChHOfElementByAllFrequencies(element, operation.getFrequencies());
             for (Map.Entry entry : findAChH.entrySet()) {
+                System.out.println("X: " + entry.getKey() + "Y: " + entry.getValue());
                 series.getData().add(new XYChart.Data(entry.getKey().toString(), entry.getValue()));
             }
 

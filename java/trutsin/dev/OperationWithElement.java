@@ -2,6 +2,7 @@ package trutsin.dev;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OperationWithElement {
@@ -250,25 +251,28 @@ public class OperationWithElement {
     }
 
     public Map<Double, Double> getAChHOfElementByAllFrequencies(Element element, ArrayList<Double> allFrequencies) {
-        Map<Double, Double> mapWithFrequencyAndAChH = new HashMap<>();
-
+        Map<Double, Double> mapWithFrequencyAndAChH = new LinkedHashMap<>();
         for (double frequency : allFrequencies) {
             mapWithFrequencyAndAChH.put(frequency, getAChHOfElementByCurrentFrequency(element, frequency));
         }
+        for (Map.Entry entry : mapWithFrequencyAndAChH.entrySet()) {
+            System.out.println(entry);
+        }
+
         return mapWithFrequencyAndAChH;
     }
 
     public ArrayList<Double> getFrequencies() {
         ArrayList<Double> frequencies = new ArrayList<>();
-        frequencies.add(1.0);
-        frequencies.add(2.0);
-        frequencies.add(3.0);
-        frequencies.add(4.0);
-        frequencies.add(5.0);
+
+        for (double i = 0; i < 10 ; i++) {
+            frequencies.add(i);
+        }
+
         return frequencies;
     }
 
-    public void transformation_FNCh_In_PF(Element element, double parameterOfTransform) {
+    public Element transformation_FNCh_In_PF(Element element, double parameterOfTransform) {
         Element newElement = new Element();
 
 //        Large multiplier
@@ -452,5 +456,7 @@ public class OperationWithElement {
         newElement.setCoefficientThird(intermediateArray3);
         newElement.setCoefficientFourth(intermediateArray4);
         newElement.setLargeMultiplier(newLargeMultiplier);
+
+        return newElement;
     }
 }

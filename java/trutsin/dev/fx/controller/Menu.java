@@ -90,7 +90,20 @@ public class Menu {
 
 
     public void transformFNChInPf(ActionEvent actionEvent) {
+        transformFNChInPfButton.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/graphicPF.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
     }
 
     public void transformFNChInZf(ActionEvent actionEvent) {

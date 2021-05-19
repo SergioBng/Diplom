@@ -14,5 +14,8 @@ public class Demo{
         Element newElement2 = operationWithElement.transformation_FNCh_In_FVCh(element);
         System.out.printf("New: " + newElement2.toString());
 
+//        Element newElement3 = operationWithElement.transformation_FNCh_In_PF(element, 1);
+//        System.out.printf("New: " + newElement3.toString());
+
     }
 }
