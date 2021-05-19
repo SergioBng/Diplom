@@ -50,7 +50,8 @@ public class GraphicFNCh {
                     operation.getAChHOfElementByAllFrequencies(element, operation.getFrequencies());
             for (Map.Entry entry : findAChH.entrySet()) {
                 System.out.println("X: " + entry.getKey() + "Y: " + entry.getValue());
-                series.getData().add(new XYChart.Data(entry.getKey().toString(), entry.getValue()));
+                String finalX = String.format("%.2f" ,entry.getKey());
+                series.getData().add(new XYChart.Data(finalX, entry.getValue()));
             }
 
             chart.getData().addAll(series);

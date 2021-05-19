@@ -1,5 +1,7 @@
 package trutsin.dev;
 
+import java.util.Map;
+
 public class Demo{
     public static void main(String[] args) {
         WorkWithFile workWithFile = new WorkWithFile();
@@ -11,11 +13,18 @@ public class Demo{
 //        Element newElement = operationWithElement.denormirovanie(element, 3);
 //        System.out.printf("New: " + newElement.toString());
 
-        Element newElement2 = operationWithElement.transformation_FNCh_In_FVCh(element);
-        System.out.printf("New: " + newElement2.toString());
+//        Element newElement2 = operationWithElement.transformation_FNCh_In_FVCh(element);
+//        System.out.printf("New: " + newElement2.toString());
 
 //        Element newElement3 = operationWithElement.transformation_FNCh_In_PF(element, 1);
 //        System.out.printf("New: " + newElement3.toString());
+
+        Map<Double, Double> map =
+        operationWithElement.getAChHOfElementByAllFrequencies(element, operationWithElement.getFrequencies());
+        for (Map.Entry entry :
+                map.entrySet()) {
+            System.out.println(entry);
+        }
 
     }
 }

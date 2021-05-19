@@ -265,7 +265,7 @@ public class OperationWithElement {
     public ArrayList<Double> getFrequencies() {
         ArrayList<Double> frequencies = new ArrayList<>();
 
-        for (double i = 0; i < 10 ; i++) {
+        for (double i = 0.05; i <= 5 ; i += 0.05) {
             frequencies.add(i);
         }
 

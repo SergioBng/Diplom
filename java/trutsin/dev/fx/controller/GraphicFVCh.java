@@ -41,7 +41,8 @@ public class GraphicFVCh {
             Map<Double, Double> findAChH =
                     operation.getAChHOfElementByAllFrequencies(newElement, operation.getFrequencies());
             for (Map.Entry entry : findAChH.entrySet()) {
-                series.getData().add(new XYChart.Data(entry.getKey().toString(), entry.getValue()));
+                String finalX = String.format("%.2f" ,entry.getKey());
+                series.getData().add(new XYChart.Data(finalX, entry.getValue()));
             }
 
             chart.getData().addAll(series);
