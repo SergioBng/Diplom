@@ -283,6 +283,7 @@ public class OperationWithElement {
 //        First coefficient
 
         ArrayList<Double> intermediateArray1 = new ArrayList<>();
+        ArrayList<Double> intermediateArray1ForEnterInArray2 = new ArrayList<>();
         for (int i = 0; i < element.getCoefficientFirst().size(); i += 2) {
 
 //            Old coefficients and parameter
@@ -293,6 +294,7 @@ public class OperationWithElement {
 //            New coefficients
             double newCoefficient1 = 0;
             double newCoefficient2 = 0;
+            double newFrequencyForEnterInArray2 = 0;
             double newDegree1 = 0;
             double newDegree2 = 0;
             if (parameterD > 0) {
@@ -309,6 +311,13 @@ public class OperationWithElement {
                 newDegree1 = 2 * oldDegree;
                 intermediateArray1.add(newCoefficient1);
                 intermediateArray1.add(newDegree1);
+            } else if (parameterD < 0) {
+                newCoefficient1 = oldCoefficient / (2 * parameterOfTransform);
+                newFrequencyForEnterInArray2 = Math.abs(Math.sqrt(-parameterD) / (2 * parameterOfTransform));
+                newDegree1 = oldDegree;
+                intermediateArray1ForEnterInArray2.add(newCoefficient1);
+                intermediateArray1ForEnterInArray2.add(newFrequencyForEnterInArray2);
+                intermediateArray1ForEnterInArray2.add(newDegree1);
             }
 
         }
@@ -340,30 +349,31 @@ public class OperationWithElement {
             }
 
 //            New coefficients
-            double newCoefficient = 0;
-            double newFrequency = 0;
-            double newDegree = 0;
-            if (((i + 1) % 2) != 0) {
-                newCoefficient = (oldCoefficient - (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
-                        (2 * parameterOfTransform);
-                newFrequency = Math.abs((oldFrequency + (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
-                        (2 * parameterOfTransform));
-                newDegree = oldDegree;
-            } else if (((i + 1) % 2) == 0) {
-                newCoefficient = (oldCoefficient + (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
-                        (2 * parameterOfTransform);
-                newFrequency = Math.abs((oldFrequency - (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
-                        (2 * parameterOfTransform));
-                newDegree = oldDegree;
-            } else if (parameterD < 0) {
-                newCoefficient = oldCoefficient / (2 * parameterOfTransform);
-                newFrequency = Math.abs(Math.sqrt(-parameterD) / (2 * parameterOfTransform));
-                newDegree = oldDegree;
-            }
-            intermediateArray2.add(newCoefficient);
-            intermediateArray2.add(newFrequency);
-            intermediateArray2.add(newDegree);
+            double newCoefficient1 = 0;
+            double newCoefficient2 = 0;
+            double newFrequency1 = 0;
+            double newFrequency2 = 0;
+            double newDegree1 = 0;
+            double newDegree2 = 0;
+            newCoefficient1 = (oldCoefficient - (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
+                    (2 * parameterOfTransform);
+            newFrequency1 = Math.abs((oldFrequency + (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
+                    (2 * parameterOfTransform));
+            newDegree1 = oldDegree;
+            newCoefficient2 = (oldCoefficient + (Math.sqrt(parameterR) * Math.cos(parameterFi / 2))) /
+                    (2 * parameterOfTransform);
+            newFrequency2 = Math.abs((oldFrequency - (Math.sqrt(parameterR) * Math.sin(parameterFi / 2))) /
+                    (2 * parameterOfTransform));
+            newDegree2 = oldDegree;
+
+            intermediateArray2.add(newCoefficient1);
+            intermediateArray2.add(newFrequency1);
+            intermediateArray2.add(newDegree1);
+            intermediateArray2.add(newCoefficient2);
+            intermediateArray2.add(newFrequency2);
+            intermediateArray2.add(newDegree2);
         }
+        intermediateArray2.addAll(intermediateArray1ForEnterInArray2);
 
 //        Third coefficient
 

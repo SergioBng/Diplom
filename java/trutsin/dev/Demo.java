@@ -1,5 +1,6 @@
 package trutsin.dev;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Demo{
@@ -19,12 +20,6 @@ public class Demo{
 //        Element newElement3 = operationWithElement.transformation_FNCh_In_PF(element, 1);
 //        System.out.printf("New: " + newElement3.toString());
 
-        Map<Double, Double> map =
-        operationWithElement.getAChHOfElementByAllFrequencies(element, operationWithElement.getFrequencies());
-        for (Map.Entry entry :
-                map.entrySet()) {
-            System.out.println(entry);
-        }
 
     }
 }
