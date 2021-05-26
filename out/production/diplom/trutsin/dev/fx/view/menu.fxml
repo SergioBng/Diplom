@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #bfbfbf;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trutsin.dev.fx.controller.Menu">
    <children>
-      <Button fx:id="makeDenormirovanieButton" layoutX="92.0" layoutY="437.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="143.0" text="Денормирование" />
+      <Button fx:id="makeDenormirovanieButton" layoutX="92.0" layoutY="437.0" mnemonicParsing="false" onAction="#makeDenormirovanie" prefHeight="31.0" prefWidth="143.0" text="Денормирование" />
       <Button fx:id="findAChHButton" layoutX="92.0" layoutY="102.0" mnemonicParsing="false" onAction="#findAChH" prefHeight="24.0" prefWidth="143.0" text="АЧХ" />
       <Button fx:id="transformFNChInFVChButton" layoutX="92.0" layoutY="168.0" mnemonicParsing="false" onAction="#transformFNChInFVCh" prefHeight="31.0" prefWidth="143.0" text="ФНЧ в ФВЧ" />
       <Button fx:id="transformFNChInPfButton" layoutX="92.0" layoutY="235.0" mnemonicParsing="false" onAction="#transformFNChInPf" prefHeight="31.0" prefWidth="143.0" text="ФНЧ в ПФ" />

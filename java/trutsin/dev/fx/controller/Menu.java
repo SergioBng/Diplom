@@ -109,4 +109,22 @@ public class Menu {
     public void transformFNChInZf(ActionEvent actionEvent) {
 
     }
+
+    @FXML
+    void makeDenormirovanie(ActionEvent event) {
+        makeDenormirovanieButton.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../view/graphicDenormirovanie.fxml"));
+            try {
+                loader.load();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
+    }
 }

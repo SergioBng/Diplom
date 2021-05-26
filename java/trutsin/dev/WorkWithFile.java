@@ -2,15 +2,16 @@ package trutsin.dev;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WorkWithFile {
 
     public WorkWithFile() {
     }
 
-    public String readParameters() {
+    public String readParameters(String path) {
         String textFromFile = "";
-        try (FileReader reader = new FileReader("java/trutsin/dev/parameters.txt")) {
+        try (FileReader reader = new FileReader(path)) {
             int c;
             while ((c = reader.read()) != -1) {
                 textFromFile += (char) c;
@@ -30,8 +31,9 @@ public class WorkWithFile {
     }
 
     public Element setParametersFromFile() {
+        String path = "C:/Users/user/Desktop/Mathcad diplom/FNCH.txt";
         Element element = new Element();
-        String[] parameters = readParameters().split("\r\n");
+        String[] parameters = readParameters(path).split("\r\n");
         for (String parameter : parameters) {
             if (parameter.contains("array1")){
 
@@ -77,6 +79,19 @@ public class WorkWithFile {
             }
         }
         return element;
+    }
+
+    public ArrayList<Double> getReadyValues(String path) {
+        ArrayList<Double> list = new ArrayList<>();
+        String[] arrayWithXY = readParameters(path).split("\r\n");
+        for (String str : arrayWithXY) {
+            String[] xy = str.split(",");
+            for (String v: xy) {
+                list.add(Double.parseDouble(v));
+            }
+        }
+        System.out.println(list);
+        return list;
     }
 
 //    public void ras() {

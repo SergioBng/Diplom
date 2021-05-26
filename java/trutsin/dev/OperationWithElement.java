@@ -97,9 +97,10 @@ public class OperationWithElement {
 
 //        --------------------------------Second part-------------------------------------------
 
-        for (int i = 0; i < element.getCoefficientFirst().size(); i += 3) {
-            Double oldCoefficient = element.getCoefficientFirst().get(i);
-            multipliedLargeMultiplier2 *= Math.pow(Math.pow(oldCoefficient, 2) + Math.pow(element.getCoefficientSecond().get(i + 1), 2),
+        for (int i = 0; i < element.getCoefficientSecond().size(); i += 3) {
+            Double oldCoefficient = element.getCoefficientSecond().get(i);
+            multipliedLargeMultiplier2 *= Math.pow(Math.pow(oldCoefficient, 2) +
+                            Math.pow(element.getCoefficientSecond().get(i + 1), 2),
                     element.getCoefficientSecond().get(i + 2));
             sumOfDegree2 += element.getCoefficientSecond().get(i + 2);
         }
@@ -177,11 +178,11 @@ public class OperationWithElement {
 //        Third coefficient
         ArrayList<Double> intermediateArray3 = new ArrayList<>();
         for (int i = 0; i < element.getCoefficientThird().size(); i += 2) {
-            int numberOfLargeMultiplier = 1;
+            int numberOfMultiplier = 1;
             Double oldCoefficientFirst = element.getCoefficientThird().get(i);
             double newCoefficientFirst;
             double newCoefficientSecond;
-            if (oldCoefficientFirst != 0 & numberOfLargeMultiplier < countOfMultipliers) {
+            if (oldCoefficientFirst != 0 & numberOfMultiplier < countOfMultipliers) {
                 newCoefficientFirst = Math.pow(oldCoefficientFirst, -1);
                 newCoefficientSecond = element.getCoefficientThird().get(i + 1);
             } else {
@@ -190,7 +191,7 @@ public class OperationWithElement {
             }
             intermediateArray3.add(newCoefficientFirst);
             intermediateArray3.add(newCoefficientSecond);
-            numberOfLargeMultiplier++;
+            numberOfMultiplier++;
         }
         newElement.setCoefficientThird(intermediateArray3);
         newElement.setLargeMultiplier(element.getLargeMultiplier() * multipliedLargeMultiplier1
