@@ -7,6 +7,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import trutsin.dev.Element;
 import trutsin.dev.OperationWithElement;
 import trutsin.dev.WorkWithFile;
@@ -21,6 +22,9 @@ public class GraphicFVCh {
 
     @FXML
     private LineChart<?, ?> chart;
+
+    @FXML
+    private ImageView image;
 
     @FXML
     private CategoryAxis x;

@@ -8,14 +8,12 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import trutsin.dev.Element;
-import trutsin.dev.OperationWithElement;
 import trutsin.dev.WorkWithFile;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-public class GraphicPf {
+public class GraphicZF {
+
     @FXML
     private Button createButton;
 
@@ -38,17 +36,7 @@ public class GraphicPf {
             series.setName("АЧХ");
 
             WorkWithFile workWithFile = new WorkWithFile();
-//            Element element = workWithFile.setParametersFromFile();
-//            OperationWithElement operation = new OperationWithElement();
-//            Element newElement = operation.transformation_FNCh_In_PF(element, 1);
-//            Map<Double, Double> findAChH =
-//                    operation.getAChHOfElementByAllFrequencies(newElement, operation.getFrequencies());
-//            for (Map.Entry entry : findAChH.entrySet()) {
-//                String finalX = String.format("%.2f" ,entry.getKey());
-//                series.getData().add(new XYChart.Data(finalX, entry.getValue()));
-//            }
-
-            String path = "C:/Users/user/Desktop/Mathcad diplom/PF.txt";
+            String path = "C:/Users/user/Desktop/Mathcad diplom/ZF.txt";
             ArrayList<Double> list = workWithFile.getReadyValues(path);
             for (int i = 0; i < list.size(); i += 2) {
                 String finalX = String.format("%.2f" , list.get(i));
@@ -59,3 +47,4 @@ public class GraphicPf {
         });
     }
 }
+

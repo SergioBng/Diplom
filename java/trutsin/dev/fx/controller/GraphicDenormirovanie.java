@@ -7,6 +7,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import trutsin.dev.WorkWithFile;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class GraphicDenormirovanie {
 
     @FXML
     private LineChart<?, ?> chart;
+
+    @FXML
+    private ImageView image;
 
     @FXML
     private CategoryAxis x;

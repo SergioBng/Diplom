@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="810.0" style="-fx-background-color: #bfbfbf;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trutsin.dev.fx.controller.GraphicPf">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="810.0" style="-fx-background-color: #bfbfbf;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="trutsin.dev.fx.controller.GraphicZF">
    <children>
-      <Text layoutX="186.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="АЧХ после преобразования ФНЧ в ПФ" wrappingWidth="438.04248046875">
+      <Text layoutX="186.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="АЧХ после преобразования ФНЧ в ЗФ" wrappingWidth="438.04248046875">
          <font>
             <Font size="23.0" />
          </font>
@@ -26,9 +26,9 @@
             <NumberAxis fx:id="y" animated="false" side="LEFT" />
          </yAxis>
       </LineChart>
-      <ImageView fx:id="image" fitHeight="146.0" fitWidth="791.0" layoutX="7.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="143.0" fitWidth="798.0" layoutX="6.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../pictures/PF.PNG" />
+            <Image url="@../pictures/ZF.PNG" />
          </image>
       </ImageView>
    </children>
